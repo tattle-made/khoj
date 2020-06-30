@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "community_responses",
+  "info": {
+    "name": "Community Response"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "image",
+        "video",
+        "text",
+        "hyperlink"
+      ]
+    },
+    "text": {
+      "type": "richtext"
+    },
+    "media": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "payload": {
+      "type": "json"
+    },
+    "message": {
+      "model": "message",
+      "via": "community_responses"
+    }
+  }
+}
