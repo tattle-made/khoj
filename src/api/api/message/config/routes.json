@@ -47,6 +47,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/messages/:id/feedback",
+      "handler": "message.feedback",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }
