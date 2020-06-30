@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  khoj-db:
+    image: mongo
+    container_name: khoj-db
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo_username
+      MONGO_INITDB_ROOT_PASSWORD: mongo_password
+    volumes:
+      - strapidata:/data/db
+    ports:
+      - "27017:27017"
+
+volumes:
+  strapidata:

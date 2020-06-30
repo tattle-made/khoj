@@ -1,0 +1,16 @@
+name: PROD (ui-web-user)
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "src/ui-web-user/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: |
+          echo 'hi'

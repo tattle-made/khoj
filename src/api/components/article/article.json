@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_article_articles",
+  "info": {
+    "name": "article",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "byline": {
+      "type": "text"
+    },
+    "thumbnail": {
+      "type": "string"
+    }
+  }
+}

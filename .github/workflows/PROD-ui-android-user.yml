@@ -1,0 +1,16 @@
+name: PROD (ui-android-user)
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "src/ui-android-user/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: |
+          echo 'hi'

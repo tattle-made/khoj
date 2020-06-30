@@ -1,0 +1,16 @@
+name: STAGING (api)
+
+on:
+  push:
+    branches:
+      - development
+    paths:
+      - "src/api/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: |
+          echo 'hi'

@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_media_media_items",
+  "info": {
+    "name": "MediaItem",
+    "icon": "image"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "text",
+        "image",
+        "video"
+      ]
+    },
+    "url": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}
