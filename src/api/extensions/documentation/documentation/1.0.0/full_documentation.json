@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "06/30/2020 4:01:28 PM"
+    "x-generation-date": "06/30/2020 11:06:00 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -2828,7 +2828,7 @@
     "/auth/local": {
       "post": {
         "deprecated": false,
-        "description": "Login a user using the identifiers email and password",
+        "description": "Login a user using the identifiers (email or username) and password. username is the preferred mode of authentication. Remember to use the property 'identifier' and not 'email' or 'username'",
         "responses": {
           "200": {
             "description": "response",
@@ -2836,8 +2836,11 @@
               "application/json": {
                 "schema": {
                   "properties": {
-                    "foo": {
+                    "jwt": {
                       "type": "string"
+                    },
+                    "user": {
+                      "type": "user object"
                     }
                   }
                 }
@@ -2875,7 +2878,7 @@
             }
           }
         },
-        "summary": "",
+        "summary": "Login as an registered user",
         "tags": [
           "UsersPermissions - User"
         ],
@@ -2886,8 +2889,25 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "foo": {
+                  "identifier": {
                     "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "login with username": {
+                  "value": {
+                    "identifier": "asdf-asdf-sadf-asdf",
+                    "password": "asdfasdf"
+                  }
+                },
+                "login with email": {
+                  "value": {
+                    "identifier": "asfa-adsfsdf-asdfasfd@tattle.co.in",
+                    "password": "asdfasdf"
                   }
                 }
               }
@@ -2899,7 +2919,7 @@
     "/auth/local/register": {
       "post": {
         "deprecated": false,
-        "description": "Register a new user with the default role",
+        "description": "Register a new user with the default role. Please ensure that you are calling this API when you are logged in as a user with the role 'User Creator'",
         "responses": {
           "200": {
             "description": "response",
@@ -2942,7 +2962,7 @@
             }
           }
         },
-        "summary": "",
+        "summary": "Register a new User",
         "tags": [
           "UsersPermissions - User"
         ],
@@ -2953,6 +2973,15 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/NewUsersPermissionsUser"
+              },
+              "examples": {
+                "New User Registration - Bare Minimum": {
+                  "value": {
+                    "username": "asdf-asdf-sadf-asdf",
+                    "email": "asdf-asdf-sadf-asdf@tattle.co.in",
+                    "password": "asdfasdf"
+                  }
+                }
               }
             }
           }
@@ -4342,7 +4371,8 @@
       "NewUsersPermissionsUser": {
         "required": [
           "username",
-          "email"
+          "email",
+          "password"
         ],
         "properties": {
           "username": {
