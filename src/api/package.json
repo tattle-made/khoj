@@ -2,7 +2,7 @@
   "name": "api",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "Khoj Backend Server",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
