@@ -23,16 +23,3 @@ jobs:
           name: tattletech/khoj-api
           tags: "stable"
           workdir: src/api/
-
-      - name: Install EB-CLI
-        run: pip install awsebcli --upgrade --user
-
-      - name: deploy to ebs
-        run: |
-          echo 'printing'
-          ls
-          mkdir ~/.aws
-          echo '[profile eb-cli]' >> ~/.aws/config
-          echo 'aws_access_key_id =' ${{ secrets.AWS_ACCESS_KEY_ID}} >> ~/.aws/config
-          echo 'aws_secret_access_key =' ${{ secrets.AWS_SECRET_ACCESS_KEY }} >> ~/.aws/config
-          ~/.local/bin/eb deploy khoj-dev -l $GITHUB_SHA
