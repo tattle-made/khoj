@@ -2,19 +2,19 @@
   "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
-    "title": "Khoj API Documentation",
+    "title": "DOCUMENTATION",
     "description": "",
-    "termsOfService": "https://tattle.co.in/privacy-policy",
+    "termsOfService": "YOUR_TERMS_OF_SERVICE_URL",
     "contact": {
-      "name": "tattle",
-      "email": "admin@tattle.co.in",
-      "url": "tattle.co.in"
+      "name": "TEAM",
+      "email": "contact-email@something.io",
+      "url": "mywebsite.io"
     },
     "license": {
-      "name": "GPL-V3",
-      "url": "https://www.gnu.org/licenses/gpl-3.0.en.html"
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "07/01/2020 12:05:48 AM"
+    "x-generation-date": "07/05/2020 10:36:01 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -27,7 +27,7 @@
       "description": "Development server"
     },
     {
-      "url": "http://13.233.238.180:3000",
+      "url": "http://3.7.78.13:3000",
       "description": "Staging server"
     },
     {
