@@ -22,6 +22,7 @@ jobs:
                 - 'src/ui-web-community/**/*'
 
   api:
+    runs-on: ubuntu-latest
     needs: changes
     if: ${{ needs.changes.outputs.api == 'true' }}
     steps:
@@ -29,6 +30,7 @@ jobs:
         run: echo Deploying API
 
   ui-web-community:
+    runs-on: ubuntu-latest
     needs: changes
     if: ${{ needs.changes.output.ui-web-community }}
     steps:
