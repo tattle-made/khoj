@@ -12,6 +12,9 @@ jobs:
       api: ${{ steps.filter.outputs.api }}
       ui-web-community: ${{ steps.filter.outputs.ui-web-community }}
     steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: master
       - uses: dorny/paths-filter@v2.2.0
         id: filter
         with:
