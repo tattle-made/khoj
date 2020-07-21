@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: master
+          ref: development
       - name: Declare some variables
         id: vars
         shell: bash
