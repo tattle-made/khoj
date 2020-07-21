@@ -45,6 +45,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           name: tattletech/khoj-api
           tags: ${{ steps.vars.outputs.sha_short }}
+          workdir: src/api/
 
   ui-web-community:
     runs-on: ubuntu-latest
