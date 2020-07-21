@@ -21,16 +21,16 @@ jobs:
             ui-web-community:
                 - 'src/ui-web-community/**/*'
 
-    api:
-      needs: changes
-      if: ${{ needs.changes.outputs.api == 'true' }}
-      steps:
-        - name: Run a one-line script
-          run: echo Deploying API
+  api:
+    needs: changes
+    if: ${{ needs.changes.outputs.api == 'true' }}
+    steps:
+      - name: Run a one-line script
+        run: echo Deploying API
 
-    ui-web-community:
-      needs: changes
-      if: ${{ needs.changes.output.ui-web-community }}
-      steps:
-        - name: Run a one-line script
-          run: echo Deploying UI Web Community
+  ui-web-community:
+    needs: changes
+    if: ${{ needs.changes.output.ui-web-community }}
+    steps:
+      - name: Run a one-line script
+        run: echo Deploying UI Web Community
