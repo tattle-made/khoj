@@ -2,4 +2,4 @@
 
 A quick description of your strapi application
 
-v0.0.17
+v0.0.18
