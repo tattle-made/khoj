@@ -12,6 +12,9 @@ jobs:
       api: ${{ steps.filter.outputs.api }}
       ui-web-community: ${{ steps.filter.outputs.ui-web-community }}
     steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: development
       - uses: dorny/paths-filter@v2.2.0
         id: filter
         with:
@@ -21,16 +24,42 @@ jobs:
             ui-web-community:
                 - 'src/ui-web-community/**/*'
 
-    api:
-      needs: changes
-      if: ${{ needs.changes.outputs.api == 'true' }}
-      steps:
-        - name: Run a one-line script
-          run: echo Deploying API
+  api:
+    runs-on: ubuntu-latest
+    needs: changes
+    if: ${{ needs.changes.outputs.api == 'true' }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: development
+      - name: Declare some variables
+        id: vars
+        shell: bash
+        run: |
+          echo "setting variables"
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      - name: Publish to Docker
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          username: tattletech
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          name: tattletech/khoj-api
+          tags: ${{ steps.vars.outputs.sha_short }}
+          workdir: src/api/
 
-    ui-web-community:
-      needs: changes
-      if: ${{ needs.changes.output.ui-web-community }}
-      steps:
-        - name: Run a one-line script
-          run: echo Deploying UI Web Community
+      - name: Deploy to k8s
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.K8S_HOST }}
+          username: ${{ secrets.K8S_USERNAME }}
+          key: ${{ secrets.K8S_KEY }}
+          script: |
+            ./autodeploy_khojapi.sh ${{ steps.vars.outputs.sha_short }} >> ~/deploy.log 2>&1
+
+  ui-web-community:
+    runs-on: ubuntu-latest
+    needs: changes
+    if: ${{ needs.changes.output.ui-web-community }}
+    steps:
+      - name: Run a one-line script
+        run: echo Deploying UI Web Community
