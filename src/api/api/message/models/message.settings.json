@@ -33,8 +33,19 @@
       "component": "media.media-item"
     },
     "community_responses": {
-      "via": "message",
-      "collection": "community-response"
+      "collection": "community-response",
+      "via": "message"
+    },
+    "files": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files",
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
     }
   }
 }

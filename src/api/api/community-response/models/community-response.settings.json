@@ -36,8 +36,8 @@
       "type": "json"
     },
     "message": {
-      "model": "message",
-      "via": "community_responses"
+      "via": "community_responses",
+      "model": "message"
     }
   }
 }
