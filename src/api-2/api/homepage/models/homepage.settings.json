@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "homepages",
+  "info": {
+    "name": "Homepage"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "greeting": {
+      "type": "string"
+    },
+    "article_trending": {
+      "type": "component",
+      "repeatable": true,
+      "component": "external-link.article"
+    },
+    "article_share": {
+      "type": "component",
+      "repeatable": true,
+      "component": "external-link.article"
+    },
+    "cover_image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "message": {
+      "type": "richtext"
+    }
+  }
+}

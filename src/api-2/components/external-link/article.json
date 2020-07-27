@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_external_link_articles",
+  "info": {
+    "name": "article",
+    "icon": "unlink"
+  },
+  "options": {},
+  "attributes": {
+    "Headline": {
+      "type": "string"
+    },
+    "byline": {
+      "type": "text"
+    },
+    "source": {
+      "type": "string"
+    },
+    "publication_date": {
+      "type": "date"
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}
