@@ -43,6 +43,10 @@
       "type": "component",
       "repeatable": false,
       "component": "annotation.query-metadata"
+    },
+    "response": {
+      "model": "response",
+      "via": "query"
     }
   }
 }

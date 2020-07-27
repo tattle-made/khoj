@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/queries": {
+    "/responses": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Query"
+                    "$ref": "#/components/schemas/Response"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Query"
+          "Response"
         ],
         "parameters": [
           {
@@ -201,7 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Query"
+                  "$ref": "#/components/schemas/Response"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Query"
+          "Response"
         ],
         "requestBody": {
           "description": "",
@@ -247,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewQuery"
+                "$ref": "#/components/schemas/NewResponse"
               }
             }
           }
         }
       }
     },
-    "/queries/count": {
+    "/responses/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -306,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Query"
+          "Response"
         ],
         "parameters": []
       }
     },
-    "/queries/{id}": {
+    "/responses/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Query"
+                  "$ref": "#/components/schemas/Response"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Query"
+          "Response"
         ],
         "parameters": [
           {
@@ -383,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Query"
+                  "$ref": "#/components/schemas/Response"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Query"
+          "Response"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewQuery"
+                "$ref": "#/components/schemas/NewResponse"
               }
             }
           }
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Query"
+          "Response"
         ],
         "parameters": [
           {
@@ -514,7 +514,7 @@
   },
   "components": {
     "schemas": {
-      "Query": {
+      "Response": {
         "required": [
           "id"
         ],
@@ -522,161 +522,69 @@
           "id": {
             "type": "string"
           },
-          "author": {
-            "required": [
-              "id",
-              "username",
-              "email"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "user_feedback": {
-            "type": "string",
-            "enum": [
-              "default",
-              "positive",
-              "negative"
-            ]
-          },
-          "media": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "name",
-                "hash",
-                "mime",
-                "size",
-                "url",
-                "provider"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "alternativeText": {
-                  "type": "string"
-                },
-                "caption": {
-                  "type": "string"
-                },
-                "width": {
-                  "type": "integer"
-                },
-                "height": {
-                  "type": "integer"
-                },
-                "formats": {
-                  "type": "object"
-                },
-                "hash": {
-                  "type": "string"
-                },
-                "ext": {
-                  "type": "string"
-                },
-                "mime": {
-                  "type": "string"
-                },
-                "size": {
-                  "type": "number"
-                },
-                "url": {
-                  "type": "string"
-                },
-                "previewUrl": {
-                  "type": "string"
-                },
-                "provider": {
-                  "type": "string"
-                },
-                "provider_metadata": {
-                  "type": "object"
-                },
-                "related": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "question": {
+          "Heading": {
             "type": "string"
           },
-          "assignee": {
+          "paragraph": {
+            "type": "string"
+          },
+          "image": {
             "required": [
               "id",
-              "username",
-              "email"
+              "name",
+              "hash",
+              "mime",
+              "size",
+              "url",
+              "provider"
             ],
             "properties": {
               "id": {
                 "type": "string"
               },
-              "username": {
+              "name": {
                 "type": "string"
               },
-              "email": {
+              "alternativeText": {
+                "type": "string"
+              },
+              "caption": {
+                "type": "string"
+              },
+              "width": {
+                "type": "integer"
+              },
+              "height": {
+                "type": "integer"
+              },
+              "formats": {
+                "type": "object"
+              },
+              "hash": {
+                "type": "string"
+              },
+              "ext": {
+                "type": "string"
+              },
+              "mime": {
+                "type": "string"
+              },
+              "size": {
+                "type": "number"
+              },
+              "url": {
+                "type": "string"
+              },
+              "previewUrl": {
                 "type": "string"
               },
               "provider": {
                 "type": "string"
               },
-              "password": {
-                "type": "string"
+              "provider_metadata": {
+                "type": "object"
               },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
+              "related": {
                 "type": "string"
               },
               "created_by": {
@@ -687,7 +595,7 @@
               }
             }
           },
-          "metadata": {
+          "url": {
             "type": "object",
             "required": [
               "id"
@@ -696,39 +604,94 @@
               "id": {
                 "type": "string"
               },
-              "theme": {
-                "type": "string",
-                "enum": [
-                  "default",
-                  "health",
-                  "politics",
-                  "meme",
-                  "hate_speech",
-                  "violence",
-                  "other"
-                ]
+              "Headline": {
+                "type": "string"
               },
-              "response_duration": {
-                "type": "string",
-                "enum": [
-                  "one_hour",
-                  "one_day",
-                  "three_days",
-                  "one_week",
-                  "indeterminate"
-                ]
+              "byline": {
+                "type": "string"
               },
-              "response_sensitivity": {
-                "type": "string",
-                "enum": [
-                  "objective",
-                  "sensitive",
-                  "opinionated"
-                ]
+              "source": {
+                "type": "string"
+              },
+              "publication_date": {
+                "type": "string"
+              },
+              "thumbnail": {
+                "required": [
+                  "id",
+                  "name",
+                  "hash",
+                  "mime",
+                  "size",
+                  "url",
+                  "provider"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "alternativeText": {
+                    "type": "string"
+                  },
+                  "caption": {
+                    "type": "string"
+                  },
+                  "width": {
+                    "type": "integer"
+                  },
+                  "height": {
+                    "type": "integer"
+                  },
+                  "formats": {
+                    "type": "object"
+                  },
+                  "hash": {
+                    "type": "string"
+                  },
+                  "ext": {
+                    "type": "string"
+                  },
+                  "mime": {
+                    "type": "string"
+                  },
+                  "size": {
+                    "type": "number"
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "previewUrl": {
+                    "type": "string"
+                  },
+                  "provider": {
+                    "type": "string"
+                  },
+                  "provider_metadata": {
+                    "type": "object"
+                  },
+                  "related": {
+                    "type": "string"
+                  },
+                  "created_by": {
+                    "type": "string"
+                  },
+                  "updated_by": {
+                    "type": "string"
+                  }
+                }
               }
             }
           },
-          "response": {
+          "is_summary": {
+            "type": "boolean"
+          },
+          "is_shareable": {
+            "type": "boolean"
+          },
+          "query": {
             "required": [
               "id"
             ],
@@ -736,25 +699,28 @@
               "id": {
                 "type": "string"
               },
-              "Heading": {
+              "author": {
                 "type": "string"
               },
-              "paragraph": {
+              "user_feedback": {
                 "type": "string"
               },
-              "image": {
+              "media": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "question": {
                 "type": "string"
               },
-              "url": {
+              "assignee": {
+                "type": "string"
+              },
+              "metadata": {
                 "type": "component"
               },
-              "is_summary": {
-                "type": "boolean"
-              },
-              "is_shareable": {
-                "type": "boolean"
-              },
-              "query": {
+              "response": {
                 "type": "string"
               },
               "created_by": {
@@ -855,26 +821,15 @@
           }
         }
       },
-      "NewQuery": {
+      "NewResponse": {
         "properties": {
-          "author": {
+          "Heading": {
             "type": "string"
           },
-          "user_feedback": {
-            "type": "string",
-            "enum": [
-              "default",
-              "positive",
-              "negative"
-            ]
-          },
-          "question": {
+          "paragraph": {
             "type": "string"
           },
-          "assignee": {
-            "type": "string"
-          },
-          "metadata": {
+          "url": {
             "type": "object",
             "required": [
               "id"
@@ -883,39 +838,94 @@
               "id": {
                 "type": "string"
               },
-              "theme": {
-                "type": "string",
-                "enum": [
-                  "default",
-                  "health",
-                  "politics",
-                  "meme",
-                  "hate_speech",
-                  "violence",
-                  "other"
-                ]
+              "Headline": {
+                "type": "string"
               },
-              "response_duration": {
-                "type": "string",
-                "enum": [
-                  "one_hour",
-                  "one_day",
-                  "three_days",
-                  "one_week",
-                  "indeterminate"
-                ]
+              "byline": {
+                "type": "string"
               },
-              "response_sensitivity": {
-                "type": "string",
-                "enum": [
-                  "objective",
-                  "sensitive",
-                  "opinionated"
-                ]
+              "source": {
+                "type": "string"
+              },
+              "publication_date": {
+                "type": "string"
+              },
+              "thumbnail": {
+                "required": [
+                  "id",
+                  "name",
+                  "hash",
+                  "mime",
+                  "size",
+                  "url",
+                  "provider"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "alternativeText": {
+                    "type": "string"
+                  },
+                  "caption": {
+                    "type": "string"
+                  },
+                  "width": {
+                    "type": "integer"
+                  },
+                  "height": {
+                    "type": "integer"
+                  },
+                  "formats": {
+                    "type": "object"
+                  },
+                  "hash": {
+                    "type": "string"
+                  },
+                  "ext": {
+                    "type": "string"
+                  },
+                  "mime": {
+                    "type": "string"
+                  },
+                  "size": {
+                    "type": "number"
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "previewUrl": {
+                    "type": "string"
+                  },
+                  "provider": {
+                    "type": "string"
+                  },
+                  "provider_metadata": {
+                    "type": "object"
+                  },
+                  "related": {
+                    "type": "string"
+                  },
+                  "created_by": {
+                    "type": "string"
+                  },
+                  "updated_by": {
+                    "type": "string"
+                  }
+                }
               }
             }
           },
-          "response": {
+          "is_summary": {
+            "type": "boolean"
+          },
+          "is_shareable": {
+            "type": "boolean"
+          },
+          "query": {
             "type": "string"
           },
           "created_by": {
@@ -930,7 +940,7 @@
   },
   "tags": [
     {
-      "name": "Query"
+      "name": "Response"
     }
   ]
 }

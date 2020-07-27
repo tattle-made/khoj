@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "responses",
+  "info": {
+    "name": "Response"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Heading": {
+      "type": "string"
+    },
+    "paragraph": {
+      "type": "text"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "url": {
+      "type": "component",
+      "repeatable": false,
+      "component": "external-link.article"
+    },
+    "is_summary": {
+      "type": "boolean"
+    },
+    "is_shareable": {
+      "type": "boolean"
+    },
+    "query": {
+      "via": "response",
+      "model": "query"
+    }
+  }
+}
