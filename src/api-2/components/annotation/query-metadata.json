@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_annotation_query_metadata",
+  "info": {
+    "name": "query_metadata",
+    "icon": "edit"
+  },
+  "options": {},
+  "attributes": {
+    "theme": {
+      "type": "enumeration",
+      "enum": [
+        "default",
+        "health",
+        "politics",
+        "meme",
+        "hate_speech",
+        "violence",
+        "other"
+      ]
+    },
+    "response_duration": {
+      "type": "enumeration",
+      "enum": [
+        "one_hour",
+        "one_day",
+        "three_days",
+        "one_week",
+        "indeterminate"
+      ]
+    },
+    "response_sensitivity": {
+      "type": "enumeration",
+      "enum": [
+        "objective",
+        "sensitive",
+        "opinionated"
+      ]
+    }
+  }
+}

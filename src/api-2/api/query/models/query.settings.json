@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "queries",
+  "info": {
+    "name": "Query"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "author": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "user_feedback": {
+      "type": "enumeration",
+      "enum": [
+        "default",
+        "positive",
+        "negative"
+      ]
+    },
+    "media": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "question": {
+      "type": "text"
+    },
+    "assignee": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "metadata": {
+      "type": "component",
+      "repeatable": false,
+      "component": "annotation.query-metadata"
+    }
+  }
+}
