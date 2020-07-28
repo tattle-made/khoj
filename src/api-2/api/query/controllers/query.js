@@ -1,5 +1,5 @@
 "use strict";
-const { sanitizeEntity } = require("strapi-utils");
+const { parseMultipartData, sanitizeEntity } = require("strapi-utils");
 
 /**
  * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
@@ -17,5 +17,18 @@ module.exports = {
     query.feedback = value;
     const updatedValue = await strapi.services.query.update({ id }, query);
     return sanitizeEntity(updatedValue, { model: strapi.models.query });
+  },
+
+  async create(ctx) {
+    let entity;
+    if (ctx.is("multipart")) {
+      const { data, files } = parseMultipartData(ctx);
+      data.author = ctx.state.user.id;
+      entity = await strapi.services.query.create(data, { files });
+    } else {
+      ctx.request.body.author = ctx.state.user.id;
+      entity = await strapi.services.query.create(ctx.request.body);
+    }
+    return sanitizeEntity(entity, { model: strapi.models.query });
   },
 };
