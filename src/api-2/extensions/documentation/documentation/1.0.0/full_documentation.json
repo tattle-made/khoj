@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "07/27/2020 7:08:54 PM"
+    "x-generation-date": "07/28/2020 7:47:14 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1062,6 +1062,96 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/queries/{id}/feedback": {
+      "post": {
+        "deprecated": false,
+        "description": "add user feedback",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Register feedback from app user",
+        "tags": [
+          "Query"
+        ],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "positive feedback": {
+                  "value": {
+                    "value": "positive"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "integer"
             }
           }
         ]
@@ -2758,7 +2848,7 @@
     "/auth/local": {
       "post": {
         "deprecated": false,
-        "description": "Login a user using the identifiers email and password",
+        "description": "Login a user using the identifiers (email or username) and password. username is the preferred mode of authentication. Remember to use the property 'identifier' and not 'email' or 'username'",
         "responses": {
           "200": {
             "description": "response",
@@ -2766,8 +2856,11 @@
               "application/json": {
                 "schema": {
                   "properties": {
-                    "foo": {
+                    "jwt": {
                       "type": "string"
+                    },
+                    "user": {
+                      "type": "user object"
                     }
                   }
                 }
@@ -2805,7 +2898,7 @@
             }
           }
         },
-        "summary": "",
+        "summary": "Login as an registered user",
         "tags": [
           "UsersPermissions - User"
         ],
@@ -2816,8 +2909,25 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "foo": {
+                  "identifier": {
                     "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "login with username": {
+                  "value": {
+                    "identifier": "asdf-asdf-sadf-asdf",
+                    "password": "asdfasdf"
+                  }
+                },
+                "login with email": {
+                  "value": {
+                    "identifier": "asfa-adsfsdf-asdfasfd@tattle.co.in",
+                    "password": "asdfasdf"
                   }
                 }
               }
@@ -2829,7 +2939,7 @@
     "/auth/local/register": {
       "post": {
         "deprecated": false,
-        "description": "Register a new user with the default role",
+        "description": "Register a new user with the default role. Please ensure that you are calling this API when you are logged in as a user with the role 'User Creator'",
         "responses": {
           "200": {
             "description": "response",
@@ -2872,7 +2982,7 @@
             }
           }
         },
-        "summary": "",
+        "summary": "Register a new User",
         "tags": [
           "UsersPermissions - User"
         ],
@@ -2883,6 +2993,15 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/NewUsersPermissionsUser"
+              },
+              "examples": {
+                "New User Registration - Bare Minimum": {
+                  "value": {
+                    "username": "asdf-asdf-sadf-asdf",
+                    "email": "asdf-asdf-sadf-asdf@tattle.co.in",
+                    "password": "asdfasdf"
+                  }
+                }
               }
             }
           }
@@ -5360,100 +5479,6 @@
                 "items": {
                   "type": "string"
                 }
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "created_by": {
-            "required": [
-              "id",
-              "email"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "firstname": {
-                "type": "string"
-              },
-              "lastname": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "registrationToken": {
-                "type": "string"
-              },
-              "isActive": {
-                "type": "boolean"
-              },
-              "roles": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "blocked": {
-                "type": "boolean"
-              }
-            }
-          },
-          "updated_by": {
-            "required": [
-              "id",
-              "email"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "firstname": {
-                "type": "string"
-              },
-              "lastname": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "registrationToken": {
-                "type": "string"
-              },
-              "isActive": {
-                "type": "boolean"
-              },
-              "roles": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "blocked": {
-                "type": "boolean"
               }
             }
           }
@@ -5462,7 +5487,8 @@
       "NewUsersPermissionsUser": {
         "required": [
           "username",
-          "email"
+          "email",
+          "password"
         ],
         "properties": {
           "username": {
@@ -5492,12 +5518,6 @@
             "default": false
           },
           "role": {
-            "type": "string"
-          },
-          "created_by": {
-            "type": "string"
-          },
-          "updated_by": {
             "type": "string"
           }
         }
