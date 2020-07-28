@@ -1,0 +1,39 @@
+export const footerItems = {
+  primary: [
+    {
+      id: 1,
+      label: "Privacy Policy",
+      target: "/privacy-policy",
+      type: "internal",
+    },
+    {
+      id: 2,
+      label: "FAQ",
+      target: "/faq",
+      type: "internal",
+    },
+  ],
+}
+
+export const primaryNav = {
+  options: [
+    {
+      id: 1,
+      label: "Queries",
+      target: "/app",
+      type: "internal",
+    },
+    {
+      id: 3,
+      label: "Account",
+      target: "/app/account",
+      type: "internal",
+    },
+    {
+      id: 4,
+      label: "Logout",
+      target: "/app/logout",
+      type: "internal",
+    },
+  ],
+}
