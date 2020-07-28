@@ -9,7 +9,6 @@ const Queries = () => {
   const [files, setFiles] = useState([])
 
   const onSubmit = async () => {
-    console.log({ files, question })
     const data = new FormData()
 
     files.map(file => {
