@@ -14,7 +14,7 @@ const LoginPage = ({ location }) => {
 
   return (
     <AppShellUnauthenticated
-      headerLabel={"Khoj UI"}
+      headerLabel={"Khoj  "}
       headerTarget={"/"}
       footerItems={footerItems}
       primaryNav={primaryNav}

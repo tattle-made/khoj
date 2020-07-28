@@ -637,8 +637,9 @@
           },
           "user_feedback": {
             "type": "string",
+            "default": "none",
             "enum": [
-              "default",
+              "none",
               "positive",
               "negative"
             ]
@@ -933,8 +934,9 @@
           },
           "user_feedback": {
             "type": "string",
+            "default": "none",
             "enum": [
-              "default",
+              "none",
               "positive",
               "negative"
             ]

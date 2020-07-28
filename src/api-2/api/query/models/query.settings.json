@@ -16,10 +16,11 @@
     "user_feedback": {
       "type": "enumeration",
       "enum": [
-        "default",
+        "none",
         "positive",
         "negative"
-      ]
+      ],
+      "default": "none"
     },
     "media": {
       "collection": "file",
