@@ -837,6 +837,17 @@
               }
             }
           },
+          "source": {
+            "type": "string",
+            "default": "headless_client",
+            "enum": [
+              "headless_client",
+              "android_app",
+              "twitter_bot",
+              "whatsapp_bot",
+              "web_ui_community"
+            ]
+          },
           "created_by": {
             "required": [
               "id",
@@ -990,6 +1001,17 @@
           },
           "response": {
             "type": "string"
+          },
+          "source": {
+            "type": "string",
+            "default": "headless_client",
+            "enum": [
+              "headless_client",
+              "android_app",
+              "twitter_bot",
+              "whatsapp_bot",
+              "web_ui_community"
+            ]
           },
           "created_by": {
             "type": "string"

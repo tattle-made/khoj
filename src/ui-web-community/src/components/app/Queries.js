@@ -1,65 +1,74 @@
-import React, { useState } from "react"
-import { Box, Grommet, Button, TextInput } from "grommet"
+import React, { useState, useContext } from "react"
+import {
+  Box,
+  Grommet,
+  Grid,
+  Button,
+  Select,
+  Heading,
+  Text,
+  TextInput,
+  TextArea,
+  ResponsiveContext,
+} from "grommet"
 import TattleTheme from "../atomic/theme"
-import Dropzone from "react-dropzone"
 import axios from "axios"
+import MetadataEditor from "../MetadataEditor"
+import Query from "../Query"
+import ResponseEditor from "../ResponseEditor"
+
+const columnsBySize = {
+  small: ["auto"],
+  other: ["flex", "medium"],
+}
+
+const rowsBySize = {
+  small: ["auto", "auto"],
+  other: ["flex"],
+}
+
+const areasBySize = {
+  small: [
+    { name: "main", start: [0, 0], end: [0, 0] },
+    { name: "side_bar", start: [0, 1], end: [0, 1] },
+  ],
+  other: [
+    { name: "main", start: [0, 0], end: [0, 0] },
+    { name: "side_bar", start: [1, 0], end: [1, 0] },
+  ],
+}
 
 const Queries = () => {
-  const [question, setQuestion] = useState("")
-  const [files, setFiles] = useState([])
-
-  const onSubmit = async () => {
-    const data = new FormData()
-
-    files.map(file => {
-      data.append("files.media", file)
-    })
-    data.append("data", JSON.stringify({ question: question }))
-
-    const token = sessionStorage.getItem("jwt")
-
-    const upload_res = await axios({
-      method: "POST",
-      url: process.env.GATSBY_API_URL + "/queries",
-      data,
-      onUploadProgress: progress => {
-        console.log("uploading : ", progress)
-      },
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-
-    console.log("Upload Result", upload_res)
-  }
-
+  const size = useContext(ResponsiveContext)
+  const sizeMapping = size === "small" ? "small" : "other"
   return (
-    <Grommet theme={TattleTheme}>
-      <Box pad="medium" gap={"medium"}>
-        <Box gap={"small"} direction={"row"}>
-          <Dropzone onDrop={acceptedFiles => setFiles(acceptedFiles)}>
-            {({ getRootProps, getInputProps }) => (
-              <Box
-                border={{ style: "dashed", size: "small" }}
-                round={"small"}
-                flex={"grow"}
-              >
-                <Box pad={"medium"} {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  <p>Drag 'n' drop some files here, or click to select files</p>
-                </Box>
-              </Box>
-            )}
-          </Dropzone>
-          <TextInput
-            placeholder="type here"
-            value={question}
-            onChange={event => setQuestion(event.target.value)}
-          />
+    <Grid
+      fill
+      areas={areasBySize[sizeMapping]}
+      columns={columnsBySize[sizeMapping]}
+      rows={rowsBySize[sizeMapping]}
+      gap={"medium"}
+    >
+      <Box gridArea={"main"} direction={"column"}>
+        <Box>
+          <Heading level={2}> Query </Heading>
+          <Query id={""} />
         </Box>
-        <Button label={"submit"} onClick={onSubmit} />
+        <Box>
+          <Heading level={2}> Response </Heading>
+          <ResponseEditor />
+        </Box>
       </Box>
-    </Grommet>
+      <Box gridArea={"side_bar"} background={"light-1"} pad={"small"}>
+        <Box>
+          <Heading level={4}> Related Media </Heading>
+        </Box>
+        <Box>
+          <Heading level={4}> Metadata </Heading>
+          <MetadataEditor queryId={"asdfas-asdfasdf-asdfasdf"} />
+        </Box>
+      </Box>
+    </Grid>
   )
 }
 

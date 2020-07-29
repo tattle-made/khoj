@@ -48,6 +48,18 @@
     "response": {
       "model": "response",
       "via": "query"
+    },
+    "source": {
+      "type": "enumeration",
+      "enum": [
+        "headless_client",
+        "android_app",
+        "twitter_bot",
+        "whatsapp_bot",
+        "web_ui_community"
+      ],
+      "default": "headless_client",
+      "required": false
     }
   }
 }

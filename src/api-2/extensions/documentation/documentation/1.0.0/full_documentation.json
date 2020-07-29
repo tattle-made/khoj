@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "07/28/2020 6:19:14 PM"
+    "x-generation-date": "07/29/2020 7:29:33 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -4609,6 +4609,17 @@
               }
             }
           },
+          "source": {
+            "type": "string",
+            "default": "headless_client",
+            "enum": [
+              "headless_client",
+              "android_app",
+              "twitter_bot",
+              "whatsapp_bot",
+              "web_ui_community"
+            ]
+          },
           "created_by": {
             "required": [
               "id",
@@ -4762,6 +4773,17 @@
           },
           "response": {
             "type": "string"
+          },
+          "source": {
+            "type": "string",
+            "default": "headless_client",
+            "enum": [
+              "headless_client",
+              "android_app",
+              "twitter_bot",
+              "whatsapp_bot",
+              "web_ui_community"
+            ]
           },
           "created_by": {
             "type": "string"
@@ -4978,6 +5000,9 @@
                 "type": "component"
               },
               "response": {
+                "type": "string"
+              },
+              "source": {
                 "type": "string"
               },
               "created_by": {
