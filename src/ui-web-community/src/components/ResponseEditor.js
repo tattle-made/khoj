@@ -39,41 +39,51 @@ const ResponseEditor = () => {
   }
 
   return (
-    <Box gap={"large"}>
-      <Box direction={"row"} gap={"large"} align={"center"}>
-        <Text size={"medium"}> Type </Text>
-        <Select
-          name={"Theme"}
-          options={["text", "image", "url"]}
-          value={responseType}
-          onChange={option => setResponseType(option.value)}
-        />
-      </Box>
-      {responseType === "text" && (
-        <Box direction={"column"} gap={"small"}>
-          <TextInput
-            placeholder="Heading"
-            value={textResponseData.heading}
-            onChange={event =>
-              setTextResponseData({
-                ...textResponseData,
-                ["heading"]: event.target.value,
-              })
-            }
-          />
-          <TextArea
-            placeholder="Byline"
-            value={textResponseData.byline}
-            onChange={event =>
-              setTextResponseData({
-                ...textResponseData,
-                ["byline"]: event.target.value,
-              })
-            }
+    <Box
+      direction={"column"}
+      background={"light-1"}
+      pad={"small"}
+      round={"small"}
+    >
+      <Heading level={2} margin={{ top: "none", bottom: "small" }}>
+        Response
+      </Heading>
+      <Box gap={"large"}>
+        <Box direction={"row"} gap={"large"} align={"center"}>
+          <Text size={"medium"}> Type </Text>
+          <Select
+            name={"Theme"}
+            options={["text", "image", "url"]}
+            value={responseType}
+            onChange={option => setResponseType(option.value)}
           />
         </Box>
-      )}
-      <Button label={"Send"} onClick={onClickSend} />
+        {responseType === "text" && (
+          <Box direction={"column"} gap={"small"}>
+            <TextInput
+              placeholder="Heading"
+              value={textResponseData.heading}
+              onChange={event =>
+                setTextResponseData({
+                  ...textResponseData,
+                  ["heading"]: event.target.value,
+                })
+              }
+            />
+            <TextArea
+              placeholder="Byline"
+              value={textResponseData.byline}
+              onChange={event =>
+                setTextResponseData({
+                  ...textResponseData,
+                  ["byline"]: event.target.value,
+                })
+              }
+            />
+          </Box>
+        )}
+        <Button label={"Send"} onClick={onClickSend} />
+      </Box>
     </Box>
   )
 }

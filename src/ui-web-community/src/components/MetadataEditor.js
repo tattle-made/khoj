@@ -41,56 +41,66 @@ const MetadataEditor = ({ queryId }) => {
   }
 
   return (
-    <Box gap={"medium"}>
-      <Box gap={"small"} direction={"column"}>
-        <Box direction={"column"}>
-          <Text size={"medium"}> Theme </Text>
-          <Select
-            name={"Theme"}
-            options={[
-              "health",
-              "politics",
-              "meme",
-              "hate speech",
-              "violence",
-              "other",
-            ]}
-            value={metadata.theme}
-            onChange={option => onAnnotationChanged("theme", option.value)}
-          />
-        </Box>
+    <Box
+      direction={"column"}
+      background={"light-1"}
+      pad={"small"}
+      round={"small"}
+    >
+      <Heading level={4} margin={{ top: "none", bottom: "small" }}>
+        Metadata
+      </Heading>
+      <Box gap={"medium"}>
+        <Box gap={"small"} direction={"column"}>
+          <Box direction={"column"}>
+            <Text size={"medium"}> Theme </Text>
+            <Select
+              name={"Theme"}
+              options={[
+                "health",
+                "politics",
+                "meme",
+                "hate speech",
+                "violence",
+                "other",
+              ]}
+              value={metadata.theme}
+              onChange={option => onAnnotationChanged("theme", option.value)}
+            />
+          </Box>
 
-        <Box direction={"column"}>
-          <Text size={"medium"}> Response Duration </Text>
-          <Select
-            name={"Response Duration"}
-            options={[
-              "one_hour",
-              "one_day",
-              "three_days",
-              "one week",
-              "indeterminate",
-            ]}
-            value={metadata.response_duration}
-            onChange={option =>
-              onAnnotationChanged("response_duration", option.value)
-            }
-          />
-        </Box>
+          <Box direction={"column"}>
+            <Text size={"medium"}> Response Duration </Text>
+            <Select
+              name={"Response Duration"}
+              options={[
+                "one_hour",
+                "one_day",
+                "three_days",
+                "one week",
+                "indeterminate",
+              ]}
+              value={metadata.response_duration}
+              onChange={option =>
+                onAnnotationChanged("response_duration", option.value)
+              }
+            />
+          </Box>
 
-        <Box direction={"column"}>
-          <Text size={"medium"}> Response Sensitivity </Text>
-          <Select
-            name={"Response Sensitivity"}
-            options={["objective", "sensitive", "opinionated"]}
-            value={metadata.response_sensitivity}
-            onChange={option =>
-              onAnnotationChanged("response_sensitivity", option.value)
-            }
-          />
+          <Box direction={"column"}>
+            <Text size={"medium"}> Response Sensitivity </Text>
+            <Select
+              name={"Response Sensitivity"}
+              options={["objective", "sensitive", "opinionated"]}
+              value={metadata.response_sensitivity}
+              onChange={option =>
+                onAnnotationChanged("response_sensitivity", option.value)
+              }
+            />
+          </Box>
         </Box>
+        <Button label={"Save"} onClick={onSave} />
       </Box>
-      <Button label={"Save"} onClick={onSave} />
     </Box>
   )
 }

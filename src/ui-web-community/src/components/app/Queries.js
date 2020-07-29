@@ -49,22 +49,22 @@ const Queries = () => {
       rows={rowsBySize[sizeMapping]}
       gap={"medium"}
     >
-      <Box gridArea={"main"} direction={"column"}>
+      <Box gridArea={"main"} direction={"column"} gap={"small"}>
         <Box>
-          <Heading level={2}> Query </Heading>
+          <Heading level={2}> Status </Heading>
+        </Box>
+        <Box>
           <Query id={""} />
         </Box>
         <Box>
-          <Heading level={2}> Response </Heading>
           <ResponseEditor />
         </Box>
       </Box>
-      <Box gridArea={"side_bar"} background={"light-1"} pad={"small"}>
+      <Box gridArea={"side_bar"}>
         <Box>
           <Heading level={4}> Related Media </Heading>
         </Box>
         <Box>
-          <Heading level={4}> Metadata </Heading>
           <MetadataEditor queryId={"asdfas-asdfasdf-asdfasdf"} />
         </Box>
       </Box>
