@@ -45,10 +45,6 @@
       "repeatable": false,
       "component": "annotation.query-metadata"
     },
-    "response": {
-      "model": "response",
-      "via": "query"
-    },
     "source": {
       "type": "enumeration",
       "enum": [
@@ -60,6 +56,11 @@
       ],
       "default": "headless_client",
       "required": false
+    },
+    "responses": {
+      "collection": "response",
+      "via": "queries",
+      "dominant": true
     }
   }
 }

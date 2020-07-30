@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_response_community_response_images",
+  "info": {
+    "name": "community_response_image",
+    "icon": "archive"
+  },
+  "options": {},
+  "attributes": {
+    "caption": {
+      "type": "string"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}

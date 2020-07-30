@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_response_community_response_texts",
+  "info": {
+    "name": "community_response_text",
+    "icon": "atom"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "byline": {
+      "type": "text"
+    }
+  }
+}
