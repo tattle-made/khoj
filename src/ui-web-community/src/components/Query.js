@@ -30,7 +30,7 @@ const Query = ({ query }) => {
               <Box margin={{ right: "xsmall" }} width={"8em"} height={"8em"}>
                 <SinglePost
                   type={mediaItem.mime.startsWith("image/") ? "image" : "video"}
-                  src={mediaItem.url}
+                  src={mediaItem.formats.small.url}
                 />
               </Box>
             )

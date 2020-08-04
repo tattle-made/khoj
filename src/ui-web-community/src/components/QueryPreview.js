@@ -48,7 +48,7 @@ const QueryPreview = ({ query }) => {
       </Box>
       <Box direction={"row"} margin={{ top: "small" }}>
         <Link to={`/app/query/${query._id}`}>
-          <Button primary label={"Details"}></Button>
+          <Button default label={"Details"}></Button>
         </Link>
       </Box>
     </Box>
