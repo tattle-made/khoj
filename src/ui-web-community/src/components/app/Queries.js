@@ -1,74 +1,26 @@
-import React, { useState, useContext } from "react"
-import {
-  Box,
-  Grommet,
-  Grid,
-  Button,
-  Select,
-  Heading,
-  Text,
-  TextInput,
-  TextArea,
-  ResponsiveContext,
-} from "grommet"
-import TattleTheme from "../atomic/theme"
+import React, { useState, useEffect } from "react"
+import { Box, Heading } from "grommet"
 import axios from "axios"
-import MetadataEditor from "../MetadataEditor"
-import Query from "../Query"
-import ResponseEditor from "../ResponseEditor"
-
-const columnsBySize = {
-  small: ["auto"],
-  other: ["flex", "medium"],
-}
-
-const rowsBySize = {
-  small: ["auto", "auto"],
-  other: ["flex"],
-}
-
-const areasBySize = {
-  small: [
-    { name: "main", start: [0, 0], end: [0, 0] },
-    { name: "side_bar", start: [0, 1], end: [0, 1] },
-  ],
-  other: [
-    { name: "main", start: [0, 0], end: [0, 0] },
-    { name: "side_bar", start: [1, 0], end: [1, 0] },
-  ],
-}
+import QueryPreview from "../QueryPreview"
 
 const Queries = () => {
-  const size = useContext(ResponsiveContext)
-  const sizeMapping = size === "small" ? "small" : "other"
+  const [page, setPageNum] = useState(0)
+  const [queries, setQueries] = useState([])
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.KHOJ_API_URL}/queries`)
+      .then(response => response.data)
+      .then(queries => {
+        setQueries(queries)
+      })
+      .catch(err => console.log("error"))
+  }, [])
+
   return (
-    <Grid
-      fill
-      areas={areasBySize[sizeMapping]}
-      columns={columnsBySize[sizeMapping]}
-      rows={rowsBySize[sizeMapping]}
-      gap={"medium"}
-    >
-      <Box gridArea={"main"} direction={"column"} gap={"small"}>
-        <Box>
-          <Heading level={2}> Status </Heading>
-        </Box>
-        <Box>
-          <Query id={""} />
-        </Box>
-        <Box>
-          <ResponseEditor />
-        </Box>
-      </Box>
-      <Box gridArea={"side_bar"}>
-        <Box>
-          <Heading level={4}> Related Media </Heading>
-        </Box>
-        <Box>
-          <MetadataEditor queryId={"asdfas-asdfasdf-asdfasdf"} />
-        </Box>
-      </Box>
-    </Grid>
+    <Box direction={"column"}>
+      {queries && queries.map(query => <QueryPreview query={query} />)}
+    </Box>
   )
 }
 

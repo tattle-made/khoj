@@ -20,16 +20,17 @@ const KHOJ_API_URL = process.env.KHOJ_API_URL || "http://localhost:1337"
  * @function ResponseEditor
  **/
 
-const ResponseEditor = () => {
+const ResponseEditor = ({ queryId }) => {
   const [responseType, setResponseType] = useState("")
   const [textResponseData, setTextResponseData] = useState({})
+
   const onClickSend = async () => {
     console.log({ responseType, textResponseData })
     const token = sessionStorage.getItem("jwt")
     const data = {}
     const update_res = await axios({
       method: "PUT",
-      url: KHOJ_API_URL + "/queries/5f2014b62a50cc43b3e60ae2",
+      url: `${process.env.KHOJ_API_URL}/queries/${queryId}`,
       data,
       headers: {
         Authorization: `Bearer ${token}`,
@@ -82,7 +83,7 @@ const ResponseEditor = () => {
             />
           </Box>
         )}
-        <Button label={"Send"} onClick={onClickSend} />
+        <Button label={"Send Reply"} onClick={onClickSend} />
       </Box>
     </Box>
   )

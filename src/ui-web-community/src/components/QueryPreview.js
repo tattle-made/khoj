@@ -8,7 +8,7 @@ import { Link } from "gatsby"
  * @function QueryPreview
  **/
 
-const Query = ({ query }) => {
+const QueryPreview = ({ query }) => {
   const [fetching, setFetching] = useState(false)
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const Query = ({ query }) => {
               <Box margin={{ right: "xsmall" }} width={"8em"} height={"8em"}>
                 <SinglePost
                   type={mediaItem.mime.startsWith("image/") ? "image" : "video"}
-                  src={mediaItem.url}
+                  src={mediaItem.formats.thumbnail.url}
                 />
               </Box>
             )
@@ -41,8 +41,18 @@ const Query = ({ query }) => {
         <Box width={"1em"} />
         <Text> {query.question}</Text>
       </Box>
+      <Box direction={"row"} margin={{ top: "medium" }}>
+        <Text size={"medium"}> Feedback </Text>
+        <Box width={"1em"} />
+        <Text> {query.user_feedback}</Text>
+      </Box>
+      <Box direction={"row"} margin={{ top: "small" }}>
+        <Link to={`/app/query/${query._id}`}>
+          <Button primary label={"Details"}></Button>
+        </Link>
+      </Box>
     </Box>
   )
 }
 
-export default Query
+export default QueryPreview
