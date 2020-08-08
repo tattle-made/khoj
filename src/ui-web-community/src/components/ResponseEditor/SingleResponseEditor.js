@@ -37,6 +37,22 @@ const emptyImageResponse = {
   },
 }
 
+const emptyUrlResponse = {
+  type: "url",
+  url: {
+    thumbnail: {
+      formats: {
+        thumbnail: {
+          url: "",
+        },
+      },
+    },
+    headline: "",
+    byline: "",
+    url: "",
+  },
+}
+
 const SingleResponseEditor = ({ response, index }) => {
   const [responseType, setResponseType] = useState(
     response ? response.type : "text"
@@ -48,7 +64,9 @@ const SingleResponseEditor = ({ response, index }) => {
   const [imageResponseData, setImageResponseData] = useState(
     response.image ? response.image : emptyImageResponse.image
   )
-  const [urlResponseData, setUrlResponseData] = useState(response.url)
+  const [urlResponseData, setUrlResponseData] = useState(
+    response.url ? response.url : emptyUrlResponse.url
+  )
 
   return (
     <Box gap={"large"}>
@@ -173,7 +191,7 @@ const SingleResponseEditor = ({ response, index }) => {
             onDrop={acceptedFiles => {
               console.log(acceptedFiles)
               setUrlResponseData({
-                ...imageResponseData,
+                ...urlResponseData,
                 ["thumbnail"]: acceptedFiles,
                 ["preview"]: URL.createObjectURL(acceptedFiles[0]),
               })
