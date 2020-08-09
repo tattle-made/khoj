@@ -20,7 +20,8 @@
       "enum": [
         "text",
         "image",
-        "url"
+        "url",
+        "summary"
       ]
     },
     "text": {
@@ -39,8 +40,13 @@
       "component": "response.community-response-url"
     },
     "queries": {
-      "via": "responses",
-      "collection": "query"
+      "collection": "query",
+      "via": "responses"
+    },
+    "summary": {
+      "type": "component",
+      "repeatable": false,
+      "component": "response.community-response-summary"
     }
   }
 }

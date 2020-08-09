@@ -58,8 +58,8 @@
       "required": false
     },
     "responses": {
-      "collection": "response",
       "via": "queries",
+      "collection": "response",
       "dominant": true
     },
     "language": {
