@@ -854,6 +854,18 @@
               }
             }
           },
+          "language": {
+            "type": "string",
+            "default": "en",
+            "enum": [
+              "en",
+              "hi",
+              "bn",
+              "mr",
+              "gu",
+              "ml"
+            ]
+          },
           "created_by": {
             "required": [
               "id",
@@ -1021,6 +1033,18 @@
             "items": {
               "type": "string"
             }
+          },
+          "language": {
+            "type": "string",
+            "default": "en",
+            "enum": [
+              "en",
+              "hi",
+              "bn",
+              "mr",
+              "gu",
+              "ml"
+            ]
           },
           "created_by": {
             "type": "string"

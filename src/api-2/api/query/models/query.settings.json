@@ -61,6 +61,18 @@
       "collection": "response",
       "via": "queries",
       "dominant": true
+    },
+    "language": {
+      "type": "enumeration",
+      "enum": [
+        "en",
+        "hi",
+        "bn",
+        "mr",
+        "gu",
+        "ml"
+      ],
+      "default": "en"
     }
   }
 }
