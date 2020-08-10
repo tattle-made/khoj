@@ -6,11 +6,14 @@
   },
   "options": {},
   "attributes": {
-    "test": {
+    "heading": {
       "type": "text"
     },
     "url": {
       "type": "string"
+    },
+    "paragraph": {
+      "type": "text"
     }
   }
 }

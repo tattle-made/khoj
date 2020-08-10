@@ -783,10 +783,13 @@
               "id": {
                 "type": "string"
               },
-              "test": {
+              "heading": {
                 "type": "string"
               },
               "url": {
+                "type": "string"
+              },
+              "paragraph": {
                 "type": "string"
               }
             }
@@ -1098,10 +1101,13 @@
               "id": {
                 "type": "string"
               },
-              "test": {
+              "heading": {
                 "type": "string"
               },
               "url": {
+                "type": "string"
+              },
+              "paragraph": {
                 "type": "string"
               }
             }
