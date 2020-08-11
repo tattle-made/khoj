@@ -10,59 +10,13 @@ import {
   TextInput,
   TextArea,
   ResponsiveContext,
+  Image,
 } from "grommet"
 import axios from "axios"
 import TattleTheme from "./atomic/theme"
-
-const SingleResponseEditor = ({ response }) => {
-  const [responseType, setResponseType] = useState(
-    response ? response.type : "text"
-  )
-  const [activeResponse, setActiveResponse] = useState({})
-  const [textResponseData, setTextResponseData] = useState({})
-
-  const onClickSave = () => {}
-
-  return (
-    <Box gap={"large"}>
-      <Box direction={"row"} gap={"large"} align={"center"}>
-        <Text size={"medium"}> Type </Text>
-        <Select
-          name={"Theme"}
-          options={["text", "image", "url"]}
-          value={responseType}
-          onChange={option => setResponseType(option.value)}
-        />
-      </Box>
-      {responseType === "text" && (
-        <Box direction={"column"} gap={"small"}>
-          <TextInput
-            placeholder="Heading"
-            value={textResponseData.heading}
-            onChange={event =>
-              setTextResponseData({
-                ...textResponseData,
-                ["heading"]: event.target.value,
-              })
-            }
-          />
-          <TextArea
-            placeholder="Byline"
-            value={textResponseData.byline}
-            onChange={event =>
-              setTextResponseData({
-                ...textResponseData,
-                ["byline"]: event.target.value,
-              })
-            }
-          />
-        </Box>
-      )}
-      <Button label={"Save"} onClick={onClickSave} />
-      <Box height={"0.1em"} background={"light-3"} />
-    </Box>
-  )
-}
+import Dropzone from "react-dropzone"
+import SingleResponseEditor from "./ResponseEditor/SingleResponseEditor"
+import { PlusCircle } from "react-feather"
 
 const KHOJ_API_URL = process.env.KHOJ_API_URL || "http://localhost:1337"
 /**
@@ -71,12 +25,10 @@ const KHOJ_API_URL = process.env.KHOJ_API_URL || "http://localhost:1337"
  **/
 
 const ResponseEditor = ({ queryId }) => {
-  const [responseType, setResponseType] = useState("text")
-  const [textResponseData, setTextResponseData] = useState({})
   const [responses, setResponses] = useState([])
 
   useEffect(() => {
-    setResponses([
+    const apiResponse = [
       {
         type: "text",
         text: {
@@ -88,25 +40,37 @@ const ResponseEditor = ({ queryId }) => {
         type: "image",
         image: {
           caption: "asdfasdf asdf asdf asdf adfs",
-          url:
-            "https://tattle-services-search.s3.ap-south-1.amazonaws.com/photo_1580818135730_ebd11086660b_ixlib_rb_1_2_696d3cf0d2.1%26ixid%3DeyJhcHBfaWQiOjEyMDd9%26auto%3Dformat%26fit%3Dcrop%26w%3D1339%26q%3D80",
+          image: {
+            formats: {
+              thumbnail: {
+                url:
+                  "https://images.unsplash.com/photo-1560179406-1c6c60e0dc76?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQ",
+              },
+            },
+          },
         },
       },
       {
         type: "url",
         url: {
-          thumbnail:
-            "https://tattle-services-search.s3.ap-south-1.amazonaws.com/thumbnail_photo_1592405750877_c285afc729ce_ixlib_rb_1_2_6de8197538.1%26ixid%3DeyJhcHBfaWQiOjEyMDd9%26auto%3Dformat%26fit%3Dcrop%26w%3D1262%26q%3D80",
+          thumbnail: {
+            formats: {
+              thumbnail: {
+                url:
+                  "https://images.unsplash.com/photo-1560179406-1c6c60e0dc76?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQ",
+              },
+            },
+          },
           headline: "asdfasdfasdfasdfasdfas fas ad fasd fasd f",
           byline: "asdf asdf asdf aksdjf lasjd flkaj sldkf slkjasdf",
           url: "asdf asdf asdf asdf ads fasdf",
         },
       },
-    ])
+    ]
+    setResponses([...apiResponse])
   }, [])
 
-  const onClickPublish = async () => {
-    console.log({ responseType, textResponseData })
+  const onClickSave = async () => {
     const token = sessionStorage.getItem("jwt")
     const data = {}
     const update_res = await axios({
@@ -129,21 +93,29 @@ const ResponseEditor = ({ queryId }) => {
     >
       <Box direction={"row"}>
         <Box flex={"grow"}>
-          <Heading level={2} margin={{ top: "none", bottom: "small" }}>
-            Response
-          </Heading>
+          <Heading
+            level={2}
+            margin={{ top: "none", bottom: "small" }}
+          ></Heading>
         </Box>
-        <Button default label={"Publish"} onClick={onClickPublish} />
+        <Button default label={"Save"} onClick={onClickSave} />
       </Box>
 
       {responses && (
         <Box direction={"column"} gap={"medium"}>
-          {responses.map(response => (
-            <SingleResponseEditor response={response} />
+          {responses.map((response, index) => (
+            <SingleResponseEditor response={response} index={index} />
           ))}
-          <SingleResponseEditor />
         </Box>
       )}
+      <Box align={"center"} pad={"small"}>
+        <Button
+          icon={<PlusCircle />}
+          label={"Add Response"}
+          gap={"small"}
+          plain={"true"}
+        />
+      </Box>
     </Box>
   )
 }

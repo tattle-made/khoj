@@ -37,8 +37,6 @@ const Query = ({ query }) => {
           })}
       </Box>
       <Box direction={"row"} margin={{ top: "small" }}>
-        <Text size={"medium"}> Question </Text>
-        <Box width={"1em"} />
         <Text> {query.question}</Text>
       </Box>
     </Box>
