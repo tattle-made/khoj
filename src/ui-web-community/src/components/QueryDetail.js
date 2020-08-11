@@ -51,8 +51,9 @@ const QueryDetail = ({ queryId }) => {
     axios
       .get(`${process.env.KHOJ_API_URL}/queries/${queryId}`)
       .then(response => response.data)
-      .then(query => {
-        setQuery(query)
+      .then(queryResponse => {
+        setQuery(queryResponse)
+        console.log("----", queryResponse)
       })
       .catch(err => console.log("error"))
   }, [])
@@ -86,7 +87,10 @@ const QueryDetail = ({ queryId }) => {
             <Query query={query} />
           </Box>
           <Box>
-            <ResponseEditor queryId={queryId} />
+            <ResponseEditor
+              queryId={queryId}
+              communityResponses={query.responses}
+            />
           </Box>
         </Box>
         <Box gridArea={"side_bar"}>

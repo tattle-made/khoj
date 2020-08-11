@@ -24,9 +24,7 @@ const KHOJ_API_URL = process.env.KHOJ_API_URL || "http://localhost:1337"
  * @function ResponseEditor
  **/
 
-const ResponseEditor = ({ queryId }) => {
-  const [responses, setResponses] = useState([])
-
+const ResponseEditor = ({ queryId, communityResponses }) => {
   useEffect(() => {
     const apiResponse = [
       {
@@ -67,21 +65,12 @@ const ResponseEditor = ({ queryId }) => {
         },
       },
     ]
-    setResponses([...apiResponse])
+    // console.log("---COMRESP---", responses)
+    // setResponses([...communityResponses])
   }, [])
 
   const onClickSave = async () => {
     const token = sessionStorage.getItem("jwt")
-    const data = {}
-    const update_res = await axios({
-      method: "PUT",
-      url: `${process.env.KHOJ_API_URL}/queries/${queryId}`,
-      data,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    console.log("Upload Result", update_res)
   }
 
   return (
@@ -101,10 +90,14 @@ const ResponseEditor = ({ queryId }) => {
         <Button default label={"Save"} onClick={onClickSave} />
       </Box>
 
-      {responses && (
+      {communityResponses && (
         <Box direction={"column"} gap={"medium"}>
-          {responses.map((response, index) => (
-            <SingleResponseEditor response={response} index={index} />
+          {communityResponses.map((response, index) => (
+            <SingleResponseEditor
+              key={index}
+              response={response}
+              index={index}
+            />
           ))}
         </Box>
       )}
@@ -113,7 +106,7 @@ const ResponseEditor = ({ queryId }) => {
           icon={<PlusCircle />}
           label={"Add Response"}
           gap={"small"}
-          plain={"true"}
+          plain={true}
         />
       </Box>
     </Box>

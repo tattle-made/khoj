@@ -27,7 +27,12 @@ const Query = ({ query }) => {
         {query.media &&
           query.media.map(mediaItem => {
             return (
-              <Box margin={{ right: "xsmall" }} width={"8em"} height={"8em"}>
+              <Box
+                key={mediaItem.id}
+                margin={{ right: "xsmall" }}
+                width={"8em"}
+                height={"8em"}
+              >
                 <SinglePost
                   type={mediaItem.mime.startsWith("image/") ? "image" : "video"}
                   src={mediaItem.formats.small.url}

@@ -53,6 +53,15 @@ const emptyUrlResponse = {
   },
 }
 
+const emptySummaryResponse = {
+  type: "summary",
+  summary: {
+    heading: "",
+    paragraph: "",
+    url: "",
+  },
+}
+
 const SingleResponseEditor = ({ response, index }) => {
   const [responseType, setResponseType] = useState(
     response ? response.type : "text"
@@ -68,13 +77,22 @@ const SingleResponseEditor = ({ response, index }) => {
     response.url ? response.url : emptyUrlResponse.url
   )
 
+  const [summaryResponseData, setSummaryResponseData] = useState(
+    response.summary ? response.summary : emptySummaryResponse.url
+  )
+
+  const testButton = () => {
+    const token = sessionStorage.getItem("jwt")
+    // console.log(token)
+  }
+
   return (
     <Box gap={"large"}>
       <Box direction={"row"} gap={"small"} align={"center"}>
         <Heading level={3}>{index + 1}</Heading>
         <Select
           name={"Theme"}
-          options={["text", "image", "url"]}
+          options={["text", "image", "url", "summary"]}
           value={responseType}
           onChange={option => setResponseType(option.value)}
         />
@@ -224,6 +242,31 @@ const SingleResponseEditor = ({ response, index }) => {
               </Box>
             )}
           </Dropzone>
+          <Button default label={"save"} onClick={testButton} />
+        </Box>
+      )}
+      {responseType === "summary" && (
+        <Box direction={"column"} gap={"small"}>
+          <TextInput
+            placeholder="Heading"
+            value={summaryResponseData.heading}
+            onChange={event =>
+              setSummaryResponseData({
+                ...summaryResponseData,
+                ["heading"]: event.target.value,
+              })
+            }
+          />
+          <TextArea
+            placeholder="Byline"
+            value={summaryResponseData.paragraph}
+            onChange={event =>
+              setSummaryResponseData({
+                ...summaryResponseData,
+                ["paragraph"]: event.target.value,
+              })
+            }
+          />
         </Box>
       )}
       <Box height={"0.1em"} background={"light-3"} />
