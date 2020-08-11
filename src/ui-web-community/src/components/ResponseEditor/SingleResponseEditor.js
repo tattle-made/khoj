@@ -15,7 +15,7 @@ import {
 import axios from "axios"
 import Dropzone from "react-dropzone"
 
-const emptyTextResponse = {
+export const emptyTextResponse = {
   type: "text",
   text: {
     heading: "",
@@ -78,7 +78,7 @@ const SingleResponseEditor = ({ response, index }) => {
   )
 
   const [summaryResponseData, setSummaryResponseData] = useState(
-    response.summary ? response.summary : emptySummaryResponse.url
+    response.summary ? response.summary : emptySummaryResponse.summary
   )
 
   const testButton = () => {
@@ -89,7 +89,6 @@ const SingleResponseEditor = ({ response, index }) => {
   return (
     <Box gap={"large"}>
       <Box direction={"row"} gap={"small"} align={"center"}>
-        <Heading level={3}>{index + 1}</Heading>
         <Select
           name={"Theme"}
           options={["text", "image", "url", "summary"]}
@@ -242,7 +241,6 @@ const SingleResponseEditor = ({ response, index }) => {
               </Box>
             )}
           </Dropzone>
-          <Button default label={"save"} onClick={testButton} />
         </Box>
       )}
       {responseType === "summary" && (
