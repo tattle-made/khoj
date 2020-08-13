@@ -1,5 +1,7 @@
-'use strict';
+"use strict";
 
+// import { initRolesAndPermissions } from "./bootstrap-helper/init-roles-and-permissions";
+//
 /**
  * An asynchronous bootstrap function that runs before
  * your application gets started.
