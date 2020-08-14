@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_response_community_responses",
+  "info": {
+    "name": "community_response",
+    "icon": "anchor"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "text",
+        "image",
+        "url"
+      ]
+    }
+  }
+}

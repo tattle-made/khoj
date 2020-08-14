@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_response_community_response_summaries",
+  "info": {
+    "name": "community_response_summary",
+    "icon": "brain"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "text"
+    },
+    "url": {
+      "type": "string"
+    },
+    "paragraph": {
+      "type": "text"
+    }
+  }
+}

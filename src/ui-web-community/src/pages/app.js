@@ -9,6 +9,7 @@ import useAuth from "../components/hooks/useAuth"
 import Logout from "../components/app/Logout"
 import DefaultLayout from "../components/default-layout"
 import Messages from "../components/app/Messages"
+import QueryDetail from "../components/QueryDetail"
 
 const App = ({ location }) => {
   const { state, isAuthenticated } = useAuth()
@@ -33,6 +34,7 @@ const App = ({ location }) => {
         <Queries default />
         <Account path="/account" />
         <Logout path="/logout" />
+        <QueryDetail path="/query/:queryId" />
       </Router>
     </DefaultLayout>
   )

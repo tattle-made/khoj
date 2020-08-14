@@ -9,37 +9,44 @@
     "timestamps": true
   },
   "attributes": {
-    "Heading": {
-      "type": "string"
-    },
-    "paragraph": {
-      "type": "text"
-    },
-    "image": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "plugin": "upload",
-      "required": false
-    },
-    "url": {
-      "type": "component",
-      "repeatable": false,
-      "component": "external-link.article"
-    },
     "is_summary": {
       "type": "boolean"
     },
     "is_shareable": {
       "type": "boolean"
     },
-    "query": {
-      "via": "response",
-      "model": "query"
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "text",
+        "image",
+        "url",
+        "summary"
+      ]
+    },
+    "text": {
+      "type": "component",
+      "repeatable": false,
+      "component": "response.community-response-text"
+    },
+    "image": {
+      "type": "component",
+      "repeatable": false,
+      "component": "response.community-response-image"
+    },
+    "url": {
+      "type": "component",
+      "repeatable": false,
+      "component": "response.community-response-url"
+    },
+    "queries": {
+      "collection": "query",
+      "via": "responses"
+    },
+    "summary": {
+      "type": "component",
+      "repeatable": false,
+      "component": "response.community-response-summary"
     }
   }
 }

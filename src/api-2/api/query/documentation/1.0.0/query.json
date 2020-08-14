@@ -800,42 +800,74 @@
               }
             }
           },
-          "response": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "Heading": {
-                "type": "string"
-              },
-              "paragraph": {
-                "type": "string"
-              },
-              "image": {
-                "type": "string"
-              },
-              "url": {
-                "type": "component"
-              },
-              "is_summary": {
-                "type": "boolean"
-              },
-              "is_shareable": {
-                "type": "boolean"
-              },
-              "query": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
+          "source": {
+            "type": "string",
+            "default": "headless_client",
+            "enum": [
+              "headless_client",
+              "android_app",
+              "twitter_bot",
+              "whatsapp_bot",
+              "web_ui_community"
+            ]
+          },
+          "responses": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "is_summary": {
+                  "type": "boolean"
+                },
+                "is_shareable": {
+                  "type": "boolean"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "component"
+                },
+                "image": {
+                  "type": "component"
+                },
+                "url": {
+                  "type": "component"
+                },
+                "queries": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "summary": {
+                  "type": "component"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
               }
             }
+          },
+          "language": {
+            "type": "string",
+            "default": "en",
+            "enum": [
+              "en",
+              "hi",
+              "bn",
+              "mr",
+              "gu",
+              "ml"
+            ]
           },
           "created_by": {
             "required": [
@@ -988,8 +1020,34 @@
               }
             }
           },
-          "response": {
-            "type": "string"
+          "source": {
+            "type": "string",
+            "default": "headless_client",
+            "enum": [
+              "headless_client",
+              "android_app",
+              "twitter_bot",
+              "whatsapp_bot",
+              "web_ui_community"
+            ]
+          },
+          "responses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "language": {
+            "type": "string",
+            "default": "en",
+            "enum": [
+              "en",
+              "hi",
+              "bn",
+              "mr",
+              "gu",
+              "ml"
+            ]
           },
           "created_by": {
             "type": "string"
