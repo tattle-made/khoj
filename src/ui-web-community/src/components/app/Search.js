@@ -30,6 +30,18 @@ const Search = () => {
           "https://vtBZcciiM:0d90aa82-3637-4cf6-bef8-1ae1b2aa5464@tattle-search-tqawsfx-arc.searchbase.io"
         }
         enableAppbase={true}
+        theme={{
+          typography: {
+            fontFamily: "Raleway, Helvetica, sans-serif",
+          },
+          colors: {
+            primaryColor: "#514E80",
+            titleColor: "white",
+            primaryTextColor: "#fff",
+            primaryColor: "#514E80",
+            alertColor: "#d9534f",
+          },
+        }}
       >
         <DataSearch
           componentId="SearchSensor"
