@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from "react"
-import { Box } from "grommet"
+import { Box, Heading, Text } from "grommet"
+import {
+  ReactiveBase,
+  DataSearch,
+  CategorySearch,
+  SingleRange,
+  ResultCard,
+  ReactiveList,
+} from "@appbaseio/reactivesearch"
+import QueryPreview from "../QueryPreview"
+
 /**
  * @author
  * @function Search
@@ -14,7 +24,47 @@ const Search = () => {
 
   return (
     <Box pad="medium">
-      <h1>Search</h1>
+      <ReactiveBase
+        app={"khoj"}
+        url={
+          "https://vtBZcciiM:0d90aa82-3637-4cf6-bef8-1ae1b2aa5464@tattle-search-tqawsfx-arc.searchbase.io"
+        }
+        enableAppbase={true}
+      >
+        <DataSearch
+          componentId="SearchSensor"
+          dataField={[
+            "question",
+            "responses.text.heading",
+            "responses.text.byline",
+            "responses.image.caption",
+            "responses.url.headline",
+            "responses.url.byline",
+            "responses.url.url",
+          ]}
+        />
+
+        <ReactiveList
+          componentId="result"
+          title="Results"
+          dataField="model"
+          from={0}
+          size={5}
+          pagination={true}
+          react={{
+            and: ["SearchSensor"],
+          }}
+          render={({ data }) => (
+            <ReactiveList.ResultCardsWrapper>
+              <Box direction={"column"} fill>
+                {data.map(item => {
+                  return <QueryPreview query={item} />
+                })}
+              </Box>
+            </ReactiveList.ResultCardsWrapper>
+          )}
+        />
+      </ReactiveBase>
     </Box>
   )
 }
