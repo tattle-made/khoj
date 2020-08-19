@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "@bit/tattle-tech.core-ui.app-shell": "0.0.12",
+    "@bit/tattle-tech.core-ui.app-shell": "file:./components/app-shell",
     "@bit/tattle-tech.core-ui.mediablock": "0.0.2",
     "gatsby": "^2.23.12",
     "gatsby-cli": "^2.12.60",
@@ -25,7 +25,8 @@
     "react-dropzone": "^11.0.2",
     "react-feather": "^2.0.8",
     "react-helmet": "^6.1.0",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "@bit/tattle-tech.core-ui.header": "file:./components/header"
   },
   "devDependencies": {
     "prettier": "2.0.5"
@@ -49,5 +50,10 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "bit": {
+    "env": {},
+    "componentsDefaultDirectory": "components/{name}",
+    "packageManager": "npm"
   }
 }
