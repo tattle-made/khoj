@@ -47,6 +47,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "GET",
+      "path": "/homepage/lang/:language",
+      "handler": "homepage.latest",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

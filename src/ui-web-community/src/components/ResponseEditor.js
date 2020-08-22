@@ -26,25 +26,73 @@ const KHOJ_API_URL = process.env.KHOJ_API_URL || "http://localhost:1337"
  * @function ResponseEditor
  **/
 
+const ACTIONS = {
+  ADD: "add",
+  REMOVE: "remove",
+  UPDATE: "update",
+}
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case ACTIONS.ADD:
+      return state
+    case ACTIONS.REMOVE:
+      return state
+    case ACTIONS.UPDATE:
+      return state
+    default:
+      return state
+  }
+}
+
 const ResponseEditor = ({ queryId, communityResponses }) => {
-  const [newResponses, setNewResponses] = useState([emptyTextResponse])
+  const [activeCommunityResponses, setActiveCommunityResponses] = useState(
+    communityResponses
+  )
+
+  useEffect(() => {
+    console.log("init effect")
+    setActiveCommunityResponses(communityResponses)
+  }, communityResponses)
+
+  useEffect(() => {
+    console.log("active comm resp changed")
+    console.log(activeCommunityResponses)
+  }, activeCommunityResponses)
 
   const onClickSave = async () => {
-    const token = sessionStorage.getItem("jwt")
+    // const token = sessionStorage.getItem("jwt")
+    console.log("communityResponses ", communityResponses)
+    console.log("activeCommunityResponses ", activeCommunityResponses)
   }
 
   const onAddResponseClicked = () => {
     console.log("click ")
-    setNewResponses([...newResponses, emptyTextResponse])
+    setActiveCommunityResponses([
+      ...activeCommunityResponses,
+      emptyTextResponse,
+    ])
+    // setNewResponses([...newResponses, emptyTextResponse])
+  }
+
+  const onResponseUpdate = (index, newValue) => {}
+
+  const onResponseRemove = index => {
+    console.log("removed", index)
+    // setActiveCommunityResponses(
+    // activeCommunityResponses.filter((response, i) => {
+    // console.log({ i, response })
+    // return i !== index
+    // })
+    // )
+
+    setActiveCommunityResponses(
+      activeCommunityResponses.filter((r, i) => i !== index)
+    )
   }
 
   return (
-    <Box
-      direction={"column"}
-      background={"light-1"}
-      pad={"small"}
-      round={"small"}
-    >
+    <Box direction={"column"} background={"light-1"} round={"small"}>
       <Box direction={"row"}>
         <Box flex={"grow"}>
           <Heading
@@ -55,25 +103,15 @@ const ResponseEditor = ({ queryId, communityResponses }) => {
         <Button default label={"Save"} onClick={onClickSave} />
       </Box>
 
-      {communityResponses && (
+      {activeCommunityResponses && (
         <Box direction={"column"} gap={"medium"}>
-          {communityResponses.map((response, index) => (
+          {activeCommunityResponses.map((response, index) => (
             <SingleResponseEditor
               key={index}
               response={response}
               index={index}
-            />
-          ))}
-        </Box>
-      )}
-
-      {newResponses && (
-        <Box direction={"column"} gap={"medium"} margin={{ top: "small" }}>
-          {newResponses.map((response, index) => (
-            <SingleResponseEditor
-              key={index}
-              response={response}
-              index={index}
+              onUpdate={onResponseUpdate}
+              onRemove={onResponseRemove}
             />
           ))}
         </Box>

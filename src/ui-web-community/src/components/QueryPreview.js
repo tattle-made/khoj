@@ -39,7 +39,7 @@ const QueryPreview = ({ query }) => {
       <Box direction={"row"} margin={{ top: "small" }}>
         <Text size={"medium"}> Question </Text>
         <Box width={"1em"} />
-        <Text> {query.question}</Text>
+        <Text dangerouslySetInnerHTML={{ __html: query.question }} />
       </Box>
       <Box direction={"row"} margin={{ top: "medium" }}>
         <Text size={"medium"}> Feedback </Text>

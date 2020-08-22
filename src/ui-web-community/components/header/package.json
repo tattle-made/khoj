@@ -1,0 +1,27 @@
+{
+  "name": "@bit/tattle-tech.core-ui.header",
+  "version": "0.0.3",
+  "homepage": "https://bit.dev/tattle-tech/core-ui/header",
+  "main": "dist/index.js",
+  "componentId": {
+    "scope": "tattle-tech.core-ui",
+    "name": "header",
+    "version": "0.0.3"
+  },
+  "dependencies": {
+    "@bit/tattle-tech.core-ui.app-logo": "0.0.2",
+    "@bit/tattle-tech.core-ui.links": "0.0.3"
+  },
+  "devDependencies": {},
+  "peerDependencies": {
+    "react": "16.13.1",
+    "grommet": "^2.12.0",
+    "styled-components": "5.1.0"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "bit": {
+    "env": {
+      "compiler": "bit.envs/compilers/react@1.0.18"
+    }
+  }
+}

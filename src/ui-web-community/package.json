@@ -1,11 +1,13 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "Khoj",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "A web app for khoj's community members",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Tattle <admin@tattle.co.in>",
   "dependencies": {
-    "@bit/tattle-tech.core-ui.app-shell": "0.0.12",
+    "@appbaseio/reactivesearch": "^3.12.2",
+    "@bit/tattle-tech.core-ui.app-shell": "file:./components/app-shell",
+    "@bit/tattle-tech.core-ui.header": "file:./components/header",
     "@bit/tattle-tech.core-ui.mediablock": "0.0.2",
     "gatsby": "^2.23.12",
     "gatsby-cli": "^2.12.60",
@@ -49,5 +51,10 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "bit": {
+    "env": {},
+    "componentsDefaultDirectory": "components/{name}",
+    "packageManager": "npm"
   }
 }

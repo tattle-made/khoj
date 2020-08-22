@@ -8,7 +8,7 @@ import { AppShell } from "@bit/tattle-tech.core-ui.app-shell"
 
 const DefaultLayout = ({ children }) => (
   <AppShell
-    headerLabel={"Khoj Community"}
+    headerLabel={"Khoj"}
     headerTarget={"/"}
     footerItems={footerItems}
     primaryNav={primaryNav}

@@ -14,6 +14,7 @@ import {
 } from "grommet"
 import axios from "axios"
 import Dropzone from "react-dropzone"
+import { Trash } from "react-feather"
 
 export const emptyTextResponse = {
   type: "text",
@@ -62,7 +63,7 @@ const emptySummaryResponse = {
   },
 }
 
-const SingleResponseEditor = ({ response, index }) => {
+const SingleResponseEditor = ({ response, index, onUpdate, onRemove }) => {
   const [responseType, setResponseType] = useState(
     response ? response.type : "text"
   )
@@ -87,13 +88,24 @@ const SingleResponseEditor = ({ response, index }) => {
   }
 
   return (
-    <Box gap={"large"}>
+    <Box
+      gap={"large"}
+      background={index % 2 === 0 ? "light-1" : "light-3"}
+      pad={"small"}
+    >
       <Box direction={"row"} gap={"small"} align={"center"}>
-        <Select
-          name={"Theme"}
-          options={["text", "image", "url", "summary"]}
-          value={responseType}
-          onChange={option => setResponseType(option.value)}
+        <Box flex={"grow"}>
+          <Select
+            name={"Theme"}
+            options={["text", "image", "url", "summary"]}
+            value={responseType}
+            onChange={option => setResponseType(option.value)}
+          />
+        </Box>
+        <Button
+          icon={<Trash />}
+          focusIndicator={false}
+          onClick={() => onRemove(index)}
         />
       </Box>
       {responseType === "text" && (
@@ -108,16 +120,19 @@ const SingleResponseEditor = ({ response, index }) => {
               })
             }
           />
-          <TextArea
-            placeholder="Byline"
-            value={textResponseData.byline}
-            onChange={event =>
-              setTextResponseData({
-                ...textResponseData,
-                ["byline"]: event.target.value,
-              })
-            }
-          />
+          <Box height={"small"}>
+            <TextArea
+              placeholder="Byline"
+              value={textResponseData.byline}
+              onChange={event =>
+                setTextResponseData({
+                  ...textResponseData,
+                  ["byline"]: event.target.value,
+                })
+              }
+              fill
+            />
+          </Box>
         </Box>
       )}
       {responseType === "image" && (
@@ -267,7 +282,6 @@ const SingleResponseEditor = ({ response, index }) => {
           />
         </Box>
       )}
-      <Box height={"0.1em"} background={"light-3"} />
     </Box>
   )
 }
