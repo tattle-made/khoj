@@ -20,7 +20,7 @@ export const primaryNav = {
     {
       id: 1,
       label: "Workspace",
-      target: "/workspace",
+      target: "/app/workspace",
       type: "internal",
     },
     {

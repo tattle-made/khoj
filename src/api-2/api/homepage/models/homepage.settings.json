@@ -35,6 +35,18 @@
     },
     "message": {
       "type": "richtext"
+    },
+    "language": {
+      "type": "enumeration",
+      "enum": [
+        "english",
+        "hindi",
+        "bengali",
+        "marathi",
+        "gujarati",
+        "malayalam"
+      ],
+      "default": "english"
     }
   }
 }
