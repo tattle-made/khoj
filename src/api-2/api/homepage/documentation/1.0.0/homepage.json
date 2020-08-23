@@ -855,7 +855,7 @@
             "enum": [
               "english",
               "hindi",
-              "bengali",
+              "bangla",
               "marathi",
               "gujarati",
               "malayalam"
@@ -1151,7 +1151,7 @@
             "enum": [
               "english",
               "hindi",
-              "bengali",
+              "bangla",
               "marathi",
               "gujarati",
               "malayalam"

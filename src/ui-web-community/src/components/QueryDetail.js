@@ -93,12 +93,19 @@ const QueryDetail = ({ queryId }) => {
             />
           </Box>
         </Box>
-        <Box gridArea={"side_bar"}>
+        <Box gridArea={"side_bar"} gap={"large"}>
           <Box>
             <Heading level={4}> Related Media </Heading>
           </Box>
           <Box>
             <MetadataEditor queryId={queryId} />
+          </Box>
+          <Box>
+            <Button
+              primary
+              onClick={() => console.log("send notification")}
+              label={"Notify User"}
+            />
           </Box>
         </Box>
       </Grid>
