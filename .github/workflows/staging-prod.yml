@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: development
+          ref: master
       - uses: dorny/paths-filter@v2.2.0
         id: filter
         with:
