@@ -1,9 +1,9 @@
-name: Deploy to Staging
+name: Deploy to Production
 
 on:
   push:
     branches:
-      - development
+      - master
 
 jobs:
   changes:
@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: development
+          ref: master
       - name: Declare some variables
         id: vars
         shell: bash
@@ -50,7 +50,7 @@ jobs:
       - name: Deploy to k8s
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.K8S_HOST_DEV }}
+          host: ${{ secrets.K8S_HOST_PROD }}
           username: ${{ secrets.K8S_USERNAME }}
           key: ${{ secrets.K8S_KEY }}
           script: |
