@@ -8,7 +8,7 @@ const admin = require("firebase-admin");
 
 module.exports = {
   async notify(ctx) {
-    var serviceAccount = require("../../../.keys/firebase-keys.json");
+    var serviceAccount = require("./firebase-keys.json");
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
       databaseURL: "https://tattle-khoj.firebaseio.com",

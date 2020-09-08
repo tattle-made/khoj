@@ -7,3 +7,4 @@ src/.DS_Store
 data/
 
 .keys/
+firebase-keys.json

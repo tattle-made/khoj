@@ -29,7 +29,9 @@ module.exports = () => {
       Bucket: "tattle-keys",
       Key: "tattle-khoj-firebase.json",
     };
-    var file = require("fs").createWriteStream("./.keys/firebase-keys.json");
+    var file = require("fs").createWriteStream(
+      "./api/response/controllers/firebase-keys.json"
+    );
     s3.getObject(params).createReadStream().pipe(file);
   } catch (err) {
     console.log("error fetching firebase keys ", err);
