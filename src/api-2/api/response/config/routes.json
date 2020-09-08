@@ -47,6 +47,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/responses/notify/",
+      "handler": "response.notify",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }
