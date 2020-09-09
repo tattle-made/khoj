@@ -68,7 +68,7 @@ jobs:
   ui-web-community:
     runs-on: ubuntu-latest
     needs: changes
-    if: ${{ needs.changes.output.ui-web-community }}
+    if: ${{ needs.changes.output.ui-web-community == 'true' }}
     steps:
       - uses: actions/checkout@v2
         with:
