@@ -17,26 +17,26 @@ const NotificationComposer = ({ queryId, userToken }) => {
 
   const onSendNotification = () => {
     console.log({ queryId, userToken })
-    // var data = JSON.stringify({
-    //   token:
-    // "e3DE7V-rTA6YN6-jlEOleY:APA91bEFBPODsEwWMEvWIZkTlXW6WMsGh1SM0oefUbGUJ13SAV9kP7mMTA8YE1Zdz3JMfuyHqWUK504j1dF1byE_jcLZuqGokcbcJDxiAW7EncHOGD91dXpzz3Hj75F_xlQ0YRFEJkMB",
-    //   title: notificationTitle,
-    //   byline: notificationByline,
-    //   queryId: "5f57c76142418e001df2763a",
-    // })
-    // var config = {
-    //   method: "post",
-    //   url: `${process.env.KHOJ_API_URL}/responses/notify`,
-    //   headers: {
-    // Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
-    // "Content-Type": "application/json",
-    //   },
-    //   data: data,
-    // }
-    //
-    // axios(config)
-    //   .then(response => console.log(JSON.stringify(response.data)))
-    //   .catch(err => console.log(err))
+    var data = JSON.stringify({
+      token:
+        "e3DE7V-rTA6YN6-jlEOleY:APA91bEFBPODsEwWMEvWIZkTlXW6WMsGh1SM0oefUbGUJ13SAV9kP7mMTA8YE1Zdz3JMfuyHqWUK504j1dF1byE_jcLZuqGokcbcJDxiAW7EncHOGD91dXpzz3Hj75F_xlQ0YRFEJkMB",
+      title: notificationTitle,
+      byline: notificationByline,
+      queryId: "5f57c76142418e001df2763a",
+    })
+    var config = {
+      method: "post",
+      url: `${process.env.KHOJ_API_URL}/responses/notify`,
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+        "Content-Type": "application/json",
+      },
+      data: data,
+    }
+
+    axios(config)
+      .then(response => console.log(JSON.stringify(response.data)))
+      .catch(err => console.log(err))
   }
 
   return (

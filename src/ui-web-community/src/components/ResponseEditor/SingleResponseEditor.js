@@ -87,6 +87,32 @@ const SingleResponseEditor = ({ response, index, onUpdate, onRemove }) => {
     // console.log(token)
   }
 
+  useEffect(
+    () => {
+      console.log("something changed")
+      switch (responseType) {
+        case "text":
+          onUpdate("text", index, textResponseData)
+          break
+        case "image":
+          onUpdate("image", index, imageResponseData)
+          break
+        case "url":
+          onUpdate("url", index, urlResponseData)
+          break
+        case "summary":
+          onUpdate("summary", index, summaryResponseData)
+          break
+        case "default":
+          return
+      }
+    },
+    textResponseData,
+    imageResponseData,
+    urlResponseData,
+    summaryResponseData
+  )
+
   return (
     <Box
       gap={"large"}

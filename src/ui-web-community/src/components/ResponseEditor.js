@@ -57,13 +57,29 @@ const ResponseEditor = ({ queryId, communityResponses }) => {
 
   useEffect(() => {
     console.log("active comm resp changed")
-    console.log(activeCommunityResponses)
+    console.log(communityResponses)
   }, activeCommunityResponses)
 
   const onClickSave = async () => {
     // const token = sessionStorage.getItem("jwt")
     console.log("communityResponses ", communityResponses)
-    console.log("activeCommunityResponses ", activeCommunityResponses)
+    // console.log("activeCommunityResponses ", activeCommunityResponses)
+
+    communityResponses.map(communityResponse => {
+      var config = {
+        method: "put",
+        url: `${process.env.KHOJ_API_URL}/responses/${communityResponse.id}`,
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+          "Content-Type": "application/json",
+        },
+        data: communityResponse,
+      }
+
+      axios(config)
+        .then(response => console.log(JSON.stringify(response.data)))
+        .catch(err => console.log(err))
+    })
   }
 
   const onAddResponseClicked = () => {
@@ -75,7 +91,14 @@ const ResponseEditor = ({ queryId, communityResponses }) => {
     // setNewResponses([...newResponses, emptyTextResponse])
   }
 
-  const onResponseUpdate = (index, newValue) => {}
+  const onResponseUpdate = (type, index, newValue) => {
+    // console.log(index, newValue)
+    // communityResponses[index] = newValue
+    // console.log(communityResponses)
+
+    communityResponses[index][type] = newValue
+    console.log({ communityResponses })
+  }
 
   const onResponseRemove = index => {
     console.log("removed", index)
