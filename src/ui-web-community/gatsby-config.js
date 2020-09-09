@@ -8,21 +8,20 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-plugin-google-fonts-v2`,
       options: {
         fonts: [
           {
-            family: `Raleway`,
-            variants: [`300`, `400`, `500`, `600`, `700`],
+            family: "Raleway",
+            weights: ["300...700"],
           },
           {
-            family: `Bitter`,
-            variants: [`400`, `700`],
+            family: "Bitter",
+            weights: ["400", "700"],
           },
         ],
       },
     },
-
     {
       resolve: `gatsby-source-filesystem`,
       options: {

@@ -17,3 +17,7 @@ Join our [slack channel](https://join.slack.com/t/tattle-workspace/shared_invite
 ## Want to get help deploying it into your organisation?
 
 contact us at admin@tattle.co.in
+
+# TODOS
+
+1. add conditional deploy to ui-web-community. Existing mechanism seems to be failing for it
