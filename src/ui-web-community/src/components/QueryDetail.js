@@ -15,6 +15,7 @@ import axios from "axios"
 import MetadataEditor from "./MetadataEditor"
 import ResponseEditor from "./ResponseEditor"
 import Query from "./Query"
+import NotificationComposer from "./NotificationComposer"
 
 const columnsBySize = {
   small: ["auto"],
@@ -101,10 +102,9 @@ const QueryDetail = ({ queryId }) => {
             <MetadataEditor queryId={queryId} />
           </Box>
           <Box>
-            <Button
-              primary
-              onClick={() => console.log("send notification")}
-              label={"Notify User"}
+            <NotificationComposer
+              queryId={queryId}
+              userToken={query.author ? query.author.username : ""}
             />
           </Box>
         </Box>
