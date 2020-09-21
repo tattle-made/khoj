@@ -9,7 +9,7 @@ const Queries = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.KHOJ_API_URL}/queries`)
+      .get(`${process.env.KHOJ_API_URL}/queries?_sort=createdAt:DESC`)
       .then(response => response.data)
       .then(queries => {
         setQueries(queries)

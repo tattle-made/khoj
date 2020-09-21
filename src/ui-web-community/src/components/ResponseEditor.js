@@ -66,19 +66,37 @@ const ResponseEditor = ({ queryId, communityResponses }) => {
     // console.log("activeCommunityResponses ", activeCommunityResponses)
 
     communityResponses.map(communityResponse => {
-      var config = {
-        method: "put",
-        url: `${process.env.KHOJ_API_URL}/responses/${communityResponse.id}`,
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
-          "Content-Type": "application/json",
-        },
-        data: communityResponse,
-      }
+      if (communityResponse.id) {
+        var config = {
+          method: "put",
+          url: `${process.env.KHOJ_API_URL}/responses/${communityResponse.id}`,
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+            "Content-Type": "application/json",
+          },
+          data: communityResponse,
+        }
 
-      axios(config)
-        .then(response => console.log(JSON.stringify(response.data)))
-        .catch(err => console.log(err))
+        axios(config)
+          .then(response => console.log(JSON.stringify(response.data)))
+          .catch(err => console.log(err))
+      } else {
+        console.log("this is a new response")
+        console.log(communityResponse)
+        var config = {
+          method: "POST",
+          url: `${process.env.KHOJ_API_URL}/responses/`,
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("jwt")}`,
+            "Content-Type": "application/json",
+          },
+          data: { ...communityResponse, queries: [queryId] },
+        }
+
+        axios(config)
+          .then(response => console.log(JSON.stringify(response.data)))
+          .catch(err => console.log(err))
+      }
     })
   }
 
@@ -88,16 +106,22 @@ const ResponseEditor = ({ queryId, communityResponses }) => {
       ...activeCommunityResponses,
       emptyTextResponse,
     ])
+    communityResponses.push(emptyTextResponse)
     // setNewResponses([...newResponses, emptyTextResponse])
   }
 
   const onResponseUpdate = (type, index, newValue) => {
-    // console.log(index, newValue)
-    // communityResponses[index] = newValue
-    // console.log(communityResponses)
+    console.log("--------------")
+    console.log({ type, index, newValue })
+    console.log("--------------")
 
-    communityResponses[index][type] = newValue
-    console.log({ communityResponses })
+    try {
+      communityResponses[index][type] = newValue
+      communityResponses[index]["type"] = type
+      console.log({ communityResponses })
+    } catch (err) {
+      // console.log("fix this issue")
+    }
   }
 
   const onResponseRemove = index => {

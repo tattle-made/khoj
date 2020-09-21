@@ -16,6 +16,7 @@ import MetadataEditor from "./MetadataEditor"
 import ResponseEditor from "./ResponseEditor"
 import Query from "./Query"
 import NotificationComposer from "./NotificationComposer"
+import RelatedContent from "./RelatedContent"
 
 const columnsBySize = {
   small: ["auto"],
@@ -96,7 +97,7 @@ const QueryDetail = ({ queryId }) => {
         </Box>
         <Box gridArea={"side_bar"} gap={"large"}>
           <Box>
-            <Heading level={4}> Related Media </Heading>
+            <RelatedContent query={query} />
           </Box>
           <Box>
             <MetadataEditor queryId={queryId} />

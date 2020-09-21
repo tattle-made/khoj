@@ -87,31 +87,30 @@ const SingleResponseEditor = ({ response, index, onUpdate, onRemove }) => {
     // console.log(token)
   }
 
-  useEffect(
-    () => {
-      console.log("something changed")
-      switch (responseType) {
-        case "text":
-          onUpdate("text", index, textResponseData)
-          break
-        case "image":
-          onUpdate("image", index, imageResponseData)
-          break
-        case "url":
-          onUpdate("url", index, urlResponseData)
-          break
-        case "summary":
-          onUpdate("summary", index, summaryResponseData)
-          break
-        case "default":
-          return
-      }
-    },
+  useEffect(() => {
+    console.log("something changed")
+    switch (responseType) {
+      case "text":
+        onUpdate("text", index, textResponseData)
+        break
+      case "image":
+        onUpdate("image", index, imageResponseData)
+        break
+      case "url":
+        onUpdate("url", index, urlResponseData)
+        break
+      case "summary":
+        onUpdate("summary", index, summaryResponseData)
+        break
+      case "default":
+        return
+    }
+  }, [
     textResponseData,
     imageResponseData,
     urlResponseData,
-    summaryResponseData
-  )
+    summaryResponseData,
+  ])
 
   return (
     <Box
@@ -125,7 +124,21 @@ const SingleResponseEditor = ({ response, index, onUpdate, onRemove }) => {
             name={"Theme"}
             options={["text", "image", "url", "summary"]}
             value={responseType}
-            onChange={option => setResponseType(option.value)}
+            onChange={option => {
+              setResponseType(option.value)
+              const obj =
+                option.value === "text"
+                  ? textResponseData
+                  : option.value === "image"
+                  ? imageResponseData
+                  : option.value === "url"
+                  ? urlResponseData
+                  : option.value === "summary"
+                  ? summaryResponseData
+                  : undefined
+              onUpdate(option.value, index, obj)
+              setActiveResponse(obj)
+            }}
           />
         </Box>
         <Button

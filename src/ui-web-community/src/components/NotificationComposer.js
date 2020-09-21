@@ -18,11 +18,10 @@ const NotificationComposer = ({ queryId, userToken }) => {
   const onSendNotification = () => {
     console.log({ queryId, userToken })
     var data = JSON.stringify({
-      token:
-        "e3DE7V-rTA6YN6-jlEOleY:APA91bEFBPODsEwWMEvWIZkTlXW6WMsGh1SM0oefUbGUJ13SAV9kP7mMTA8YE1Zdz3JMfuyHqWUK504j1dF1byE_jcLZuqGokcbcJDxiAW7EncHOGD91dXpzz3Hj75F_xlQ0YRFEJkMB",
+      token: userToken,
       title: notificationTitle,
       byline: notificationByline,
-      queryId: "5f57c76142418e001df2763a",
+      queryId: queryId,
     })
     var config = {
       method: "post",

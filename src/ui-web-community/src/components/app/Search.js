@@ -27,7 +27,7 @@ const Search = () => {
       <ReactiveBase
         app={"khoj"}
         url={
-          "https://vtBZcciiM:0d90aa82-3637-4cf6-bef8-1ae1b2aa5464@tattle-search-tqawsfx-arc.searchbase.io"
+          "https://ne9dlXOyr:0f92a3f0-c48c-4575-8676-d75d191e7d48@tattle-search-bhhpxqt-arc.searchbase.io/"
         }
         enableAppbase={true}
         theme={{
